@@ -89,7 +89,7 @@ const Navbar: React.FC = () => {
                             <i className={`fas fa-${isMenuOpen ? 'times' : 'bars'}`}></i>
                         </button>
 
-                        <ul className={`masthead-nav__primary ${isMenuOpen ? 'active' : ''} ml-auto`}>
+                        <ul className={`masthead-nav__primary ${isMenuOpen ? 'active' : ''}`}>
                             <li className="search">
                                 <button onClick={toggleSearch} aria-label="Search">
                                     <FaSearch />

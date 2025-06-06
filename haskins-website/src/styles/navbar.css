@@ -24,7 +24,6 @@
 .masthead-nav__holder {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
 }
 
@@ -50,6 +49,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    margin-left: auto;
 }
 
 .masthead-nav__secondary {
