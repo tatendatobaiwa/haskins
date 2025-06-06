@@ -144,17 +144,21 @@ const Navbar: React.FC = () => {
                                     {theme === 'light' ? <FaMoon /> : <FaSun />}
                                 </button>
                             </li>
-                            <li>
-                                <button aria-label="Account">
-                                    <FaUser />
-                                </button>
-                            </li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="masthead-nav__tertiary">
                     <ul>
+                        <li>
+                            <Link to="/parts">Parts</Link>
+                        </li>
+                        <li>
+                            <Link to="/service">Service</Link>
+                        </li>
+                        <li>
+                            <Link to="/livelink">LiveLink</Link>
+                        </li>
                         <li>
                             <Link to="/support">Support</Link>
                         </li>
@@ -174,7 +178,7 @@ const Navbar: React.FC = () => {
                         <input
                             type="text"
                             className="search-panel__input"
-                            placeholder="Search..."
+                            placeholder="What are you searching for?"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />

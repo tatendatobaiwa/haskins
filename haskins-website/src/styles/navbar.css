@@ -111,8 +111,9 @@
 }
 
 .masthead-nav__tertiary {
-    background: #f8f8f8;
-    padding: 0.5rem 0;
+    background: var(--bg-color);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .masthead-nav__tertiary ul {
@@ -121,7 +122,7 @@
     padding: 0 1rem;
     display: flex;
     justify-content: flex-end;
-    gap: 2rem;
+    gap: 2.5rem;
     list-style: none;
 }
 
@@ -129,11 +130,26 @@
     color: var(--text-color);
     text-decoration: none;
     font-size: 0.875rem;
-    transition: color 0.3s ease;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    white-space: nowrap;
 }
 
 .masthead-nav__tertiary a:hover {
     color: var(--primary-color);
+}
+
+@media (max-width: 1024px) {
+    .masthead-nav__tertiary ul {
+        gap: 2rem;
+        padding: 0 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .masthead-nav__tertiary {
+        display: none;
+    }
 }
 
 /* Dropdown Styles */
@@ -181,7 +197,7 @@
 .nav-dropdown__menu {
     position: absolute;
     top: 100%;
-    right: 0;
+    left: 0;
     min-width: 800px;
     background: var(--background-color);
     border: 1px solid var(--border-color);
@@ -207,6 +223,7 @@
     align-items: center;
     padding: 0 1.5rem 1rem;
     border-bottom: 1px solid var(--border-color);
+    font-size: 2rem;
 }
 
 .nav-dropdown__list {
@@ -240,7 +257,7 @@
 }
 
 .nav-dropdown__title {
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
     text-transform: uppercase;
