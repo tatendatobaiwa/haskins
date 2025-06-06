@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaSun, FaMoon, FaSearch, FaTimes, FaUser } from 'react-icons/fa';
+import { FaSearch, FaTimes, FaUser } from 'react-icons/fa';
 import '../../styles/navbar.css';
 import haskinsLogo from '../../assets/haskinslogo.webp';
 import NavDropdown from './NavDropdown';
@@ -8,10 +8,6 @@ import NavDropdown from './NavDropdown';
 const Navbar: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-        const savedTheme = localStorage.getItem('theme');
-        return (savedTheme as 'light' | 'dark') || 'light';
-    });
     const [searchQuery, setSearchQuery] = useState('');
 
     const toggleMenu = () => {
@@ -22,23 +18,10 @@ const Navbar: React.FC = () => {
         setIsSearchOpen(!isSearchOpen);
     };
 
-    const toggleTheme = () => {
-        const newTheme = theme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme);
-        localStorage.setItem('theme', newTheme);
-        document.documentElement.setAttribute('data-theme', newTheme);
-    };
-
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
-        // Implement search functionality here
         console.log('Searching for:', searchQuery);
     };
-
-    useEffect(() => {
-        // Set initial theme
-        document.documentElement.setAttribute('data-theme', theme);
-    }, [theme]);
 
     const productsItems = [
         {
@@ -106,7 +89,12 @@ const Navbar: React.FC = () => {
                             <i className={`fas fa-${isMenuOpen ? 'times' : 'bars'}`}></i>
                         </button>
 
-                        <ul className={`masthead-nav__primary ${isMenuOpen ? 'active' : ''}`}>
+                        <ul className={`masthead-nav__primary ${isMenuOpen ? 'active' : ''} ml-auto`}>
+                            <li className="search">
+                                <button onClick={toggleSearch} aria-label="Search">
+                                    <FaSearch />
+                                </button>
+                            </li>
                             <li>
                                 <Link to="/">Home</Link>
                             </li>
@@ -134,16 +122,6 @@ const Navbar: React.FC = () => {
                         </ul>
 
                         <ul className="masthead-nav__secondary">
-                            <li className="search">
-                                <button onClick={toggleSearch} aria-label="Search">
-                                    <FaSearch />
-                                </button>
-                            </li>
-                            <li>
-                                <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-                                    {theme === 'light' ? <FaMoon /> : <FaSun />}
-                                </button>
-                            </li>
                         </ul>
                     </div>
                 </div>
