@@ -12,6 +12,9 @@ export interface Product {
     specifications: Record<string, string>;
 }
 
+// Re-export the Product interface as default
+export type { Product as default };
+
 const productsCollection = collection(db, 'products');
 
 /**

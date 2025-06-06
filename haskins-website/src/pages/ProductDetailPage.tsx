@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProductById, Product } from '../services/productService';
+import { getProductById } from '../services/productService';
+import type { Product } from '../services/productService';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import ErrorMessage from '../components/common/ErrorMessage';
 import NotFoundPage from './NotFoundPage';

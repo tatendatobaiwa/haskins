@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getStoreLocations, Store } from '../services/storeService';
+import { getStoreLocations } from '../services/storeService';
+import type { Store } from '../services/storeService';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import ErrorMessage from '../components/common/ErrorMessage';
 import Card from '../components/common/Card';

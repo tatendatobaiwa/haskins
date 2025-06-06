@@ -1,5 +1,5 @@
 import React from 'react';
-import { Product } from '../../../services/productService';
+import type { Product } from '../../../services/productService';
 import ProductCard from './ProductCard';
 import LoadingSpinner from '../../common/LoadingSpinner';
 import ErrorMessage from '../../common/ErrorMessage';

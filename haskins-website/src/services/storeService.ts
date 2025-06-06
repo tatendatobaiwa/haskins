@@ -14,6 +14,9 @@ export interface Store {
     };
 }
 
+// Re-export the Store interface as a type
+export type { Store };
+
 const storesCollection = collection(db, 'stores');
 
 /**

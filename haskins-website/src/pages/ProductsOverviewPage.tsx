@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { getProducts, Product } from '../services/productService';
+import { getProducts } from '../services/productService';
+import type { Product } from '../services/productService';
 import ProductList from '../components/features/products/ProductList';
 
 const ProductsOverviewPage: React.FC = () => {
