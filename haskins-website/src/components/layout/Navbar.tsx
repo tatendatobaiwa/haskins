@@ -8,7 +8,10 @@ import NavDropdown from './NavDropdown';
 const Navbar: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const [theme, setTheme] = useState<'light' | 'dark'>('light');
+    const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+        const savedTheme = localStorage.getItem('theme');
+        return (savedTheme as 'light' | 'dark') || 'light';
+    });
     const [searchQuery, setSearchQuery] = useState('');
 
     const toggleMenu = () => {
@@ -22,6 +25,7 @@ const Navbar: React.FC = () => {
     const toggleTheme = () => {
         const newTheme = theme === 'light' ? 'dark' : 'light';
         setTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
         document.documentElement.setAttribute('data-theme', newTheme);
     };
 
@@ -34,7 +38,7 @@ const Navbar: React.FC = () => {
     useEffect(() => {
         // Set initial theme
         document.documentElement.setAttribute('data-theme', theme);
-    }, []);
+    }, [theme]);
 
     const productsItems = [
         {
@@ -166,7 +170,7 @@ const Navbar: React.FC = () => {
 
             <div className={`search-panel ${isSearchOpen ? 'active' : ''}`}>
                 <div className="search-panel__container">
-                    <form onSubmit={handleSearch}>
+                    <form onSubmit={handleSearch} className="search-panel__form">
                         <input
                             type="text"
                             className="search-panel__input"
@@ -174,13 +178,15 @@ const Navbar: React.FC = () => {
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
-                        <button type="submit" className="search-panel__button">
-                            Search
-                        </button>
+                        <div className="search-panel__actions">
+                            <button type="submit" className="search-panel__button">
+                                Search
+                            </button>
+                            <button type="button" className="search-panel__close" onClick={toggleSearch} aria-label="Close search">
+                                <FaTimes />
+                            </button>
+                        </div>
                     </form>
-                    <button className="search-panel__close" onClick={toggleSearch} aria-label="Close search">
-                        <FaTimes />
-                    </button>
                 </div>
             </div>
         </>

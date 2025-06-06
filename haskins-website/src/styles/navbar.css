@@ -1,8 +1,9 @@
 :root {
-    --primary-color: #e31837;
+    --primary-color: #ff0000;
     --text-color: #333;
-    --background-color: #fff;
-    --border-color: #e5e5e5;
+    --bg-color: #fff;
+    --border-color: #ddd;
+    --hover-color: #f5f5f5;
 }
 
 .masthead-nav {
@@ -10,47 +11,55 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: var(--background-color);
-    z-index: 1000;
+    background-color: var(--bg-color);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: background-color 0.3s ease;
 }
 
 .masthead-nav__main {
-    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 2rem;
 }
 
 .masthead-nav__holder {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
+    width: 100%;
 }
 
 .masthead-nav__logo-side {
-    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
 }
 
 .masthead-nav__logo-side .logo {
     display: block;
+    height: 60px;
 }
 
-.masthead-nav__logo-side img {
-    height: 60px;
+.masthead-nav__logo-side .logo img {
+    height: 100%;
     width: auto;
 }
 
 .masthead-nav__primary {
     display: flex;
     align-items: center;
+    gap: 2rem;
     margin: 0;
     padding: 0;
     list-style: none;
-    gap: 2rem;
-    margin-left: auto;
-    margin-right: 2rem;
+}
+
+.masthead-nav__secondary {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-left: 2rem;
 }
 
 .masthead-nav__primary li {
@@ -86,16 +95,6 @@
 
 .masthead-nav__primary a:hover::after {
     width: 100%;
-}
-
-.masthead-nav__secondary {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    gap: 1rem;
-    flex: 0 0 auto;
 }
 
 .masthead-nav__secondary button {
@@ -256,10 +255,12 @@
 }
 
 /* Mobile Styles */
-@media (max-width: 768px) {
-    .masthead-nav__primary,
-    .masthead-nav__secondary,
-    .masthead-nav__tertiary {
+@media (max-width: 1024px) {
+    .mobile-menu-button {
+        display: block;
+    }
+
+    .masthead-nav__primary {
         display: none;
     }
 
@@ -267,20 +268,12 @@
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: 80px;
+        top: 100%;
         left: 0;
         width: 100%;
-        background: var(--background-color);
+        background-color: var(--bg-color);
         padding: 1rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .mobile-menu-button {
-        display: block;
-    }
-
-    .masthead-nav__holder {
-        height: 80px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .masthead-nav__logo-side img {
@@ -297,9 +290,11 @@
 
 /* Dark Mode Styles */
 [data-theme="dark"] {
-    --background-color: #1a1a1a;
-    --text-color: #ffffff;
-    --border-color: #333333;
+    --primary-color: #ff4444;
+    --text-color: #fff;
+    --bg-color: #1a1a1a;
+    --border-color: #333;
+    --hover-color: #2a2a2a;
 }
 
 [data-theme="dark"] .nav-dropdown__menu {
@@ -369,8 +364,8 @@
     background-color: var(--bg-color);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: top 0.3s ease-in-out;
-    z-index: 1000;
-    padding: 1rem 0;
+    z-index: 1001;
+    padding: 1.5rem 0;
 }
 
 .search-panel.active {
@@ -380,11 +375,13 @@
 .search-panel__container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 2rem;
+}
+
+.search-panel__form {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .search-panel__input {
@@ -405,6 +402,12 @@
     box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1);
 }
 
+.search-panel__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .search-panel__button {
     padding: 1rem 2rem;
     font-size: 1.1rem;
@@ -417,6 +420,7 @@
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
 .search-panel__button:hover {
@@ -438,12 +442,6 @@
     height: 40px;
     border-radius: 50%;
     transition: all 0.3s ease;
-}
-
-.search-panel__close svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    transition: transform 0.3s ease;
 }
 
 .search-panel__close:hover {
