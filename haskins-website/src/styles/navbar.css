@@ -38,7 +38,7 @@
 }
 
 .masthead-nav__logo-side img {
-    height: 40px;
+    height: 60px;
     width: auto;
 }
 
@@ -49,6 +49,8 @@
     padding: 0;
     list-style: none;
     gap: 2rem;
+    margin-left: auto;
+    margin-right: 2rem;
 }
 
 .masthead-nav__primary li {
@@ -93,6 +95,7 @@
     padding: 0;
     list-style: none;
     gap: 1rem;
+    flex: 0 0 auto;
 }
 
 .masthead-nav__secondary button {
@@ -180,11 +183,11 @@
     position: absolute;
     top: 100%;
     right: 0;
-    min-width: 320px;
+    min-width: 800px;
     background: var(--background-color);
     border: 1px solid var(--border-color);
     border-radius: 4px;
-    padding: 1.25rem 0;
+    padding: 1.25rem;
     margin-top: 1rem;
     opacity: 0;
     visibility: hidden;
@@ -193,7 +196,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.nav-dropdown__menu.active {
+.nav-dropdown:hover .nav-dropdown__menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -207,35 +210,19 @@
     border-bottom: 1px solid var(--border-color);
 }
 
-.nav-dropdown__title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-color);
-    margin: 0;
-}
-
-.nav-dropdown__close {
-    background: none;
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-    color: var(--text-color);
-    transition: color 0.3s ease;
-}
-
-.nav-dropdown__close:hover {
-    color: var(--primary-color);
-}
-
 .nav-dropdown__list {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 1rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
 }
 
 .nav-dropdown__item {
-    padding: 1.25rem 2.5rem;
+    padding: 1rem;
     transition: background-color 0.3s ease;
+    border-radius: 4px;
 }
 
 .nav-dropdown__item:hover {
@@ -276,11 +263,131 @@
         display: none;
     }
 
+    .masthead-nav__primary.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: var(--background-color);
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-menu-button {
+        display: block;
+    }
+
     .masthead-nav__holder {
-        height: 60px;
+        height: 80px;
     }
 
     .masthead-nav__logo-side img {
-        height: 30px;
+        height: 50px;
     }
+
+    .nav-dropdown__menu {
+        position: static;
+        min-width: 100%;
+        box-shadow: none;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Dark Mode Styles */
+[data-theme="dark"] {
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --border-color: #333333;
+}
+
+[data-theme="dark"] .nav-dropdown__menu {
+    background: #2a2a2a;
+}
+
+[data-theme="dark"] .search-panel {
+    background: #1a1a1a;
+}
+
+[data-theme="dark"] .search-panel__input {
+    background: #2a2a2a;
+    color: #ffffff;
+}
+
+.mobile-menu-button {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* Search Panel */
+.search-panel {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    background: var(--background-color);
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: top 0.3s ease;
+    z-index: 1001;
+}
+
+.search-panel.active {
+    top: 0;
+}
+
+.search-panel__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-panel__input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.search-panel__button {
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-panel__button:hover {
+    background-color: #c41530;
+}
+
+.search-panel__close {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-left: 1rem;
 } 

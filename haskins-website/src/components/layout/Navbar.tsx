@@ -6,26 +6,33 @@ import NavDropdown from './NavDropdown';
 
 const Navbar: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [theme, setTheme] = useState<'light' | 'dark'>('light');
+    const [searchQuery, setSearchQuery] = useState('');
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    const handleDropdownToggle = (dropdown: string) => {
-        setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
+    const toggleSearch = () => {
+        setIsSearchOpen(!isSearchOpen);
+    };
+
+    const toggleTheme = () => {
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+        document.documentElement.setAttribute('data-theme', newTheme);
+    };
+
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault();
+        // Implement search functionality here
+        console.log('Searching for:', searchQuery);
     };
 
     useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            const target = event.target as HTMLElement;
-            if (!target.closest('.nav-dropdown')) {
-                setActiveDropdown(null);
-            }
-        };
-
-        document.addEventListener('click', handleClickOutside);
-        return () => document.removeEventListener('click', handleClickOutside);
+        // Set initial theme
+        document.documentElement.setAttribute('data-theme', theme);
     }, []);
 
     const productsItems = [
@@ -80,75 +87,102 @@ const Navbar: React.FC = () => {
     ];
 
     return (
-        <nav className="masthead-nav">
-            <div className="masthead-nav__main">
-                <div className="masthead-nav__holder">
-                    <div className="masthead-nav__logo-side">
-                        <Link to="/" className="logo">
-                            <img src={haskinsLogo} alt="Haskins Logo" />
-                        </Link>
+        <>
+            <nav className="masthead-nav">
+                <div className="masthead-nav__main">
+                    <div className="masthead-nav__holder">
+                        <div className="masthead-nav__logo-side">
+                            <Link to="/" className="logo">
+                                <img src={haskinsLogo} alt="Haskins Logo" />
+                            </Link>
+                        </div>
+
+                        <button className="mobile-menu-button" onClick={toggleMenu} aria-label="Toggle menu">
+                            <i className={`fas fa-${isMenuOpen ? 'times' : 'bars'}`}></i>
+                        </button>
+
+                        <ul className={`masthead-nav__primary ${isMenuOpen ? 'active' : ''}`}>
+                            <li>
+                                <Link to="/">Home</Link>
+                            </li>
+                            <li className="has-mega-nav">
+                                <NavDropdown
+                                    title="Products"
+                                    items={productsItems}
+                                />
+                            </li>
+                            <li className="has-mega-nav">
+                                <NavDropdown
+                                    title="Services"
+                                    items={servicesItems}
+                                />
+                            </li>
+                            <li>
+                                <Link to="/about">About Us</Link>
+                            </li>
+                            <li>
+                                <Link to="/stores">Stores</Link>
+                            </li>
+                            <li>
+                                <Link to="/contact">Contact</Link>
+                            </li>
+                        </ul>
+
+                        <ul className="masthead-nav__secondary">
+                            <li className="search">
+                                <button onClick={toggleSearch} aria-label="Search">
+                                    <i className="fas fa-search"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+                                    <i className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`}></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button aria-label="Account">
+                                    <i className="fas fa-user"></i>
+                                </button>
+                            </li>
+                        </ul>
                     </div>
+                </div>
 
-                    <ul className="masthead-nav__primary">
+                <div className="masthead-nav__tertiary">
+                    <ul>
                         <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li className="has-mega-nav">
-                            <NavDropdown
-                                title="Products"
-                                items={productsItems}
-                                isOpen={activeDropdown === 'products'}
-                                onToggle={() => handleDropdownToggle('products')}
-                            />
-                        </li>
-                        <li className="has-mega-nav">
-                            <NavDropdown
-                                title="Services"
-                                items={servicesItems}
-                                isOpen={activeDropdown === 'services'}
-                                onToggle={() => handleDropdownToggle('services')}
-                            />
+                            <Link to="/support">Support</Link>
                         </li>
                         <li>
-                            <Link to="/about">About Us</Link>
+                            <Link to="/careers">Careers</Link>
                         </li>
                         <li>
-                            <Link to="/stores">Stores</Link>
-                        </li>
-                        <li>
-                            <Link to="/contact">Contact</Link>
-                        </li>
-                    </ul>
-
-                    <ul className="masthead-nav__secondary">
-                        <li className="search">
-                            <button aria-label="Search">
-                                <i className="fas fa-search"></i>
-                            </button>
-                        </li>
-                        <li>
-                            <button aria-label="Account">
-                                <i className="fas fa-user"></i>
-                            </button>
+                            <Link to="/news">News</Link>
                         </li>
                     </ul>
                 </div>
-            </div>
+            </nav>
 
-            <div className="masthead-nav__tertiary">
-                <ul>
-                    <li>
-                        <Link to="/support">Support</Link>
-                    </li>
-                    <li>
-                        <Link to="/careers">Careers</Link>
-                    </li>
-                    <li>
-                        <Link to="/news">News</Link>
-                    </li>
-                </ul>
+            <div className={`search-panel ${isSearchOpen ? 'active' : ''}`}>
+                <div className="search-panel__container">
+                    <form onSubmit={handleSearch}>
+                        <input
+                            type="text"
+                            className="search-panel__input"
+                            placeholder="Search..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <button type="submit" className="search-panel__button">
+                            Search
+                        </button>
+                    </form>
+                    <button className="search-panel__close" onClick={toggleSearch} aria-label="Close search">
+                        <i className="fas fa-times"></i>
+                    </button>
+                </div>
             </div>
-        </nav>
+        </>
     );
 };
 
