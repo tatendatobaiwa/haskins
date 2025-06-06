@@ -15,21 +15,15 @@ const Navbar: React.FC = () => {
                             </Link>
                         </div>
                         <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                            <Link to="/" className="border-transparent text-gray-300 hover:text-primary-400 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                                Home
-                            </Link>
                             <Link to="/products" className="border-transparent text-gray-300 hover:text-primary-400 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                                 Products
-                            </Link>
-                            <Link to="/about" className="border-transparent text-gray-300 hover:text-primary-400 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                                About
                             </Link>
                             <Link to="/stores" className="border-transparent text-gray-300 hover:text-primary-400 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                                 Stores
                             </Link>
-                            <Link to="/contact" className="border-transparent text-gray-300 hover:text-primary-400 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                                Contact
-                            </Link>
+                            <Link to="/about" className="border-transparent text-gray-300 hover:text-primary-400 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                                About
+                            </Link> 
                         </div>
                     </div>
                     <div className="hidden sm:ml-6 sm:flex sm:items-center">
@@ -53,20 +47,14 @@ const Navbar: React.FC = () => {
             {isMenuOpen && (
                 <div className="sm:hidden">
                     <div className="pt-2 pb-3 space-y-1">
-                        <Link to="/" className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-300 hover:bg-gray-800 hover:border-primary-300 hover:text-primary-400">
-                            Home
-                        </Link>
                         <Link to="/products" className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-300 hover:bg-gray-800 hover:border-primary-300 hover:text-primary-400">
                             Products
-                        </Link>
-                        <Link to="/about" className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-300 hover:bg-gray-800 hover:border-primary-300 hover:text-primary-400">
-                            About
                         </Link>
                         <Link to="/stores" className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-300 hover:bg-gray-800 hover:border-primary-300 hover:text-primary-400">
                             Stores
                         </Link>
-                        <Link to="/contact" className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-300 hover:bg-gray-800 hover:border-primary-300 hover:text-primary-400">
-                            Contact
+                        <Link to="/about" className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-300 hover:bg-gray-800 hover:border-primary-300 hover:text-primary-400">
+                            About
                         </Link>
                     </div>
                     <div className="pt-4 pb-3 border-t border-gray-700">

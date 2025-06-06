@@ -95,9 +95,6 @@ const Navbar: React.FC = () => {
                                     <FaSearch />
                                 </button>
                             </li>
-                            <li>
-                                <Link to="/">Home</Link>
-                            </li>
                             <li className="has-mega-nav">
                                 <NavDropdown
                                     title="Products"
@@ -111,16 +108,12 @@ const Navbar: React.FC = () => {
                                 />
                             </li>
                             <li>
-                                <Link to="/about">About Us</Link>
-                            </li>
-                            <li>
                                 <Link to="/stores">Stores</Link>
                             </li>
                             <li>
-                                <Link to="/contact">Contact</Link>
+                                <Link to="/about">About Us</Link>
                             </li>
                         </ul>
-
                         <ul className="masthead-nav__secondary">
                         </ul>
                     </div>
