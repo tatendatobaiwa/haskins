@@ -35,9 +35,9 @@ const Navbar: React.FC = () => {
             description: 'Farming and agricultural equipment solutions'
         },
         {
-            title: 'Attachments',
-            url: '/products/attachments',
-            description: 'Specialized attachments for various applications'
+            title: 'Tools and Hardware',
+            url: '/products/tools-hardware',
+            description: 'A wide range of tools and hardware for any job.'
         },
         {
             title: 'Electric',
@@ -45,9 +45,9 @@ const Navbar: React.FC = () => {
             description: 'Electric-powered equipment and solutions'
         },
         {
-            title: 'Government & Defense',
-            url: '/products/government-defense',
-            description: 'Specialized equipment for government and defense'
+            title: 'Plumbing',
+            url: '/products/plumbing',
+            description: 'Pipes, fittings, and fixtures for all your plumbing needs.'
         }
     ];
 
