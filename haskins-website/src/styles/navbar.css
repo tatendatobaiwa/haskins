@@ -325,17 +325,52 @@
     padding: 0.5rem;
 }
 
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    background-color: var(--hover-color);
+    color: var(--primary-color);
+}
+
+.theme-toggle:hover svg {
+    transform: rotate(180deg);
+}
+
 /* Search Panel */
 .search-panel {
     position: fixed;
     top: -100%;
     left: 0;
     width: 100%;
-    background: var(--background-color);
-    padding: 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: top 0.3s ease;
-    z-index: 1001;
+    background-color: var(--bg-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: top 0.3s ease-in-out;
+    z-index: 1000;
+    padding: 1rem 0;
 }
 
 .search-panel.active {
@@ -343,33 +378,50 @@
 }
 
 .search-panel__container {
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
+    padding: 0 1rem;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
 }
 
 .search-panel__input {
     flex: 1;
-    padding: 0.75rem 1rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
     border: 2px solid var(--border-color);
-    border-radius: 4px;
-    font-size: 1rem;
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    min-width: 300px;
+}
+
+.search-panel__input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1);
 }
 
 .search-panel__button {
-    padding: 0.75rem 1.5rem;
-    background: var(--primary-color);
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
     color: white;
+    background-color: var(--primary-color);
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .search-panel__button:hover {
-    background-color: #c41530;
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
 }
 
 .search-panel__close {
@@ -379,15 +431,81 @@
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
 }
 
-/* Theme Toggle */
-.theme-toggle {
-    background: none;
-    border: none;
-    color: var(--text-color);
+.search-panel__close svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+.search-panel__close:hover {
+    background-color: var(--hover-color);
+    color: var(--primary-color);
+    transform: rotate(90deg);
+}
+
+/* Search Button in Navbar */
+.masthead-nav__secondary .search button {
     font-size: 1.25rem;
-    cursor: pointer;
     padding: 0.5rem;
-    margin-left: 1rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.masthead-nav__secondary .search button svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+.masthead-nav__secondary .search button:hover {
+    background-color: var(--hover-color);
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.masthead-nav__secondary .search button:hover svg {
+    transform: scale(1.2);
+}
+
+/* Account Button */
+.masthead-nav__secondary button[aria-label="Account"] {
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.masthead-nav__secondary button[aria-label="Account"] svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+.masthead-nav__secondary button[aria-label="Account"]:hover {
+    background-color: var(--hover-color);
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.masthead-nav__secondary button[aria-label="Account"]:hover svg {
+    transform: scale(1.2);
 } 

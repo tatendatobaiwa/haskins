@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FaSun, FaMoon, FaSearch, FaTimes, FaUser } from 'react-icons/fa';
 import '../../styles/navbar.css';
 import haskinsLogo from '../../assets/haskinslogo.webp';
 import NavDropdown from './NavDropdown';
@@ -131,17 +132,17 @@ const Navbar: React.FC = () => {
                         <ul className="masthead-nav__secondary">
                             <li className="search">
                                 <button onClick={toggleSearch} aria-label="Search">
-                                    <i className="fas fa-search"></i>
+                                    <FaSearch />
                                 </button>
                             </li>
                             <li>
                                 <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-                                    <i className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`}></i>
+                                    {theme === 'light' ? <FaMoon /> : <FaSun />}
                                 </button>
                             </li>
                             <li>
                                 <button aria-label="Account">
-                                    <i className="fas fa-user"></i>
+                                    <FaUser />
                                 </button>
                             </li>
                         </ul>
@@ -178,7 +179,7 @@ const Navbar: React.FC = () => {
                         </button>
                     </form>
                     <button className="search-panel__close" onClick={toggleSearch} aria-label="Close search">
-                        <i className="fas fa-times"></i>
+                        <FaTimes />
                     </button>
                 </div>
             </div>
