@@ -151,15 +151,6 @@ const Navbar: React.FC = () => {
                 <div className="masthead-nav__tertiary">
                     <ul>
                         <li>
-                            <Link to="/parts">Parts</Link>
-                        </li>
-                        <li>
-                            <Link to="/service">Service</Link>
-                        </li>
-                        <li>
-                            <Link to="/livelink">LiveLink</Link>
-                        </li>
-                        <li>
                             <Link to="/support">Support</Link>
                         </li>
                         <li>
