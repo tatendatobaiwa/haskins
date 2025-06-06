@@ -1,0 +1,28 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+/* App Layout */
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    margin-top: 80px; /* Height of the navbar */
+    flex: 1;
+}
+
+/* Import our custom styles */
+@import './home.css';
+@import './navbar.css'; 
