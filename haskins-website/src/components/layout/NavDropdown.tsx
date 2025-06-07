@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 interface DropdownItem {
@@ -13,11 +13,15 @@ interface NavDropdownProps {
 }
 
 const NavDropdown: React.FC<NavDropdownProps> = ({ title, items }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="nav-dropdown">
+    <div className={`nav-dropdown ${isOpen ? 'open' : ''}`}>
       <button
         className="nav-dropdown__button"
         aria-haspopup="true"
+        aria-expanded={isOpen}
+        onClick={() => setIsOpen(!isOpen)}
       >
         {title}
       </button>

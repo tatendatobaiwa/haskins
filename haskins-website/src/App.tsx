@@ -1,13 +1,11 @@
 import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from './routes/AppRoutes';
-import Navbar from './components/layout/Navbar';
 import './styles/index.css';
 
 function App() {
   return (
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <div className="app bg-gray-900 text-gray-100">
-        <Navbar />
         <main className="main-content">
           <AppRoutes />
         </main>
