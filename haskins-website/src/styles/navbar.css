@@ -43,13 +43,18 @@
 }
 
 .masthead-nav__primary {
-    display: flex;
+    display: flex; /* Default for desktop */
     align-items: center;
     gap: 2rem;
     margin: 0;
     padding: 0;
     list-style: none;
     margin-left: auto;
+}
+@media (max-width: 768px) {
+    .masthead-nav__primary {
+        display: none; /* Hide desktop primary nav on mobile */
+    }
 }
 
 .masthead-nav__secondary {
@@ -284,56 +289,13 @@
     .masthead-nav__tertiary {
         display: none;
     }
-
-    .mobile-menu-button {
-        display: block;
-    }
-
-    .masthead-nav__primary {
-        display: none;
-        margin-left: 0;
-    }
-
-    .masthead-nav__primary.active {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: var(--bg-color);
-        padding: 1rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-top: 1px solid var(--border-color);
-    }
-    
     .masthead-nav__holder {
         justify-content: space-between;
     }
-
-    .masthead-nav__primary li {
-        width: 100%;
-    }
-
-    .masthead-nav__primary li a,
-    .masthead-nav__primary .nav-dropdown__button {
-        padding: 0.75rem 0.5rem;
-        width: 100%;
-        text-align: left;
-        display: block;
-    }
-
-    .masthead-nav__primary a::after,
-    .nav-dropdown__button::after {
-        display: none;
-    }
-
     .masthead-nav__logo-side img {
         height: 50px;
     }
-
+    /* Adjust NavDropdown for mobile within the new overlay */
     .nav-dropdown__menu {
         position: static;
         min-width: 100%;
@@ -344,41 +306,25 @@
         background: transparent;
         display: none; /* hide by default on mobile */
     }
-
     .nav-dropdown.open .nav-dropdown__menu {
         display: block;
     }
-
     .nav-dropdown__list {
         grid-template-columns: 1fr;
         gap: 0;
     }
-
     .nav-dropdown__item {
         padding: 0.5rem;
     }
-
     .nav-dropdown__header {
         display: none;
     }
-
     .nav-dropdown__title {
         font-size: 1rem;
     }
-
     .nav-dropdown__description {
         font-size: 0.8rem;
     }
-}
-
-.mobile-menu-button {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text-color);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
 }
 
 /* Search Panel */
@@ -507,4 +453,131 @@
 .masthead-nav__secondary .search button:hover svg,
 .masthead-nav__primary .search button:hover svg {
     transform: scale(1.2);
-} 
+}
+
+/* New Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+    display: none; /* Hidden by default */
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block; /* Show on mobile */
+    }
+    .mobile-menu-toggle button {
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+    }
+    .mobile-menu-toggle button:hover {
+        color: var(--primary-color);
+    }
+}
+
+/* New Mobile Menu Overlay */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent overlay */
+    z-index: 999; /* Below main navbar, above content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%); /* Start off-screen to the right */
+    transition: transform 0.3s ease-in-out;
+    padding-top: 80px; /* Space for fixed navbar */
+}
+
+.mobile-menu-overlay.active {
+    transform: translateX(0); /* Slide in */
+}
+
+@media (min-width: 769px) {
+    .mobile-menu-overlay {
+        display: none; /* Hide on desktop */
+    }
+}
+
+.mobile-menu-overlay__primary,
+.mobile-menu-overlay__tertiary {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    text-align: center;
+    width: 100%;
+}
+
+.mobile-menu-overlay__primary li,
+.mobile-menu-overlay__tertiary li {
+    margin-bottom: 1rem;
+}
+
+.mobile-menu-overlay__primary a,
+.mobile-menu-overlay__tertiary a,
+.mobile-menu-overlay__primary .nav-dropdown__button {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0.75rem 0;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.mobile-menu-overlay__primary a:hover,
+.mobile-menu-overlay__tertiary a:hover,
+.mobile-menu-overlay__primary .nav-dropdown__button:hover {
+    color: var(--primary-color);
+}
+
+/* Adjust NavDropdown within mobile overlay */
+.mobile-menu-overlay .nav-dropdown__menu {
+    position: static; /* Override absolute positioning */
+    min-width: auto;
+    width: 100%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin-top: 0.5rem;
+    opacity: 1; /* Always visible when parent is active */
+    visibility: visible;
+    transform: none;
+}
+
+.mobile-menu-overlay .nav-dropdown__list {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+}
+
+.mobile-menu-overlay .nav-dropdown__item {
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.mobile-menu-overlay .nav-dropdown__item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu-overlay .nav-dropdown__title {
+    font-size: 1.2rem;
+}
+
+.mobile-menu-overlay .nav-dropdown__description {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* Ensure dropdown menu appears when open inside the overlay */
+.mobile-menu-overlay .nav-dropdown.open .nav-dropdown__menu {
+    display: block;
+}

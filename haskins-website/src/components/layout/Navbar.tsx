@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaSearch, FaTimes, FaUser } from 'react-icons/fa';
+import { FaSearch, FaTimes, FaBars } from 'react-icons/fa';
 import '../../styles/navbar.css';
 import haskinsLogo from '../../assets/haskinslogo.webp';
 import NavDropdown from './NavDropdown';
@@ -85,11 +85,7 @@ const Navbar: React.FC = () => {
                             </Link>
                         </div>
 
-                        <button className="mobile-menu-button" onClick={toggleMenu} aria-label="Toggle menu">
-                            <i className={`fas fa-${isMenuOpen ? 'times' : 'bars'}`}></i>
-                        </button>
-
-                        <ul className={`masthead-nav__primary ${isMenuOpen ? 'active' : ''}`}>
+                        <ul className="masthead-nav__primary">
                             <li className="search">
                                 <button onClick={toggleSearch} aria-label="Search">
                                     <FaSearch />
@@ -115,6 +111,11 @@ const Navbar: React.FC = () => {
                             </li>
                         </ul>
                         <ul className="masthead-nav__secondary">
+                            <li className="mobile-menu-toggle">
+                                <button onClick={toggleMenu} aria-label="Toggle mobile menu">
+                                    {isMenuOpen ? <FaTimes /> : <FaBars />}
+                                </button>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -133,6 +134,42 @@ const Navbar: React.FC = () => {
                     </ul>
                 </div>
             </nav>
+
+            {isMenuOpen && (
+                <div className="mobile-menu-overlay">
+                    <ul className="mobile-menu-overlay__primary">
+                        <li className="has-mega-nav">
+                            <NavDropdown
+                                title="Products"
+                                items={productsItems}
+                            />
+                        </li>
+                        <li className="has-mega-nav">
+                            <NavDropdown
+                                title="Services"
+                                items={servicesItems}
+                            />
+                        </li>
+                        <li>
+                            <Link to="/stores" onClick={toggleMenu}>Stores</Link>
+                        </li>
+                        <li>
+                            <Link to="/about" onClick={toggleMenu}>About Us</Link>
+                        </li>
+                    </ul>
+                    <ul className="mobile-menu-overlay__tertiary">
+                        <li>
+                            <Link to="/support" onClick={toggleMenu}>Support</Link>
+                        </li>
+                        <li>
+                            <Link to="/careers" onClick={toggleMenu}>Careers</Link>
+                        </li>
+                        <li>
+                            <Link to="/news" onClick={toggleMenu}>News</Link>
+                        </li>
+                    </ul>
+                </div>
+            )}
 
             <div className={`search-panel ${isSearchOpen ? 'active' : ''}`}>
                 <div className="search-panel__container">
@@ -159,4 +196,4 @@ const Navbar: React.FC = () => {
     );
 };
 
-export default Navbar; 
+export default Navbar;
